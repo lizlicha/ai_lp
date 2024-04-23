@@ -1679,3 +1679,15 @@ preloader
         opacity: 0;
     }
 }
+
+.team-item {
+    height: 400px; /* 高さを統一 */
+    margin-bottom: 30px; /* 下のマージンを調整 */
+}
+
+.team-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* コンテンツを均等に分散 */
+    height: 100%; /* 親要素の高さに合わせる */
+}
