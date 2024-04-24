@@ -249,7 +249,7 @@
                 </div>
                 <div class="offset-lg-3 col-lg-6 ">
                     <div class="center-text ">
-                        <p>お問い合わせはこちらから。でもまだつながらないからちょっと待ってね。</p>
+                        <p>お問い合わせはこちらから。</p>
                     </div>
                 </div>
             </div>
@@ -267,21 +267,21 @@
                 <!-- ***** Contact Form Start ***** -->
                 <div class="col-lg-8 col-md-6 col-sm-12 ">
                     <div class="contact-form ">
-                        <form id="contact " action=" " method="get ">
+                        <form id="contact-form" action="https://7ba1gnc85i.execute-api.ap-northeast-1.amazonaws.com/Prod/contact/" method="post">
                             <div class="row ">
                                 <div class="col-lg-6 col-md-12 col-sm-12 ">
                                     <fieldset>
-                                        <input name="name " type="text " class="form-control " id="name " placeholder="フルネーム " required=" ">
+                                        <input name="name" type="text" class="form-control " id="name" placeholder="お名前" required=" ">
                                     </fieldset>
                                 </div>
                                 <div class="col-lg-6 col-md-12 col-sm-12 ">
                                     <fieldset>
-                                        <input name="email " type="email " class="form-control " id="email " placeholder="メールアドレス " required=" ">
+                                        <input name="email" type="email" class="form-control " id="email" placeholder="メールアドレス " required=" ">
                                     </fieldset>
                                 </div>
                                 <div class="col-lg-12 ">
                                     <fieldset>
-                                        <textarea name="message " rows="6 " class="form-control " id="message " placeholder="メッセージ " required=" "></textarea>
+                                        <textarea name="message" rows="6" class="form-control " id="message" placeholder="メッセージ " required=" "></textarea>
                                     </fieldset>
                                 </div>
                                 <div class="col-lg-12 ">
@@ -337,6 +337,29 @@
 
     <!-- Global Init -->
     <script src="assets/js/custom.js "></script>
+
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // フォームのデフォルトの送信を防ぐ
+            const formData = new FormData(this);
+            fetch(this.action, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(Object.fromEntries(formData))
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // 成功した場合、ダイアログでメッセージを表示
+                    alert('Success: ' + data.message);
+                })
+                .catch((error) => {
+                    // エラーが発生した場合、ダイアログでエラーメッセージを表示
+                    alert('Error: ' + error);
+                });
+        });
+    </script>
 
 </body>
 
